@@ -1,0 +1,1 @@
+*/30 * * * * [ -n  `/usr/bin/pgrep -i chrome` ] && /usr/bin/pkill -i chrome && echo `date +%s` >> $HOME/.cache/record.txt
