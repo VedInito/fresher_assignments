@@ -2,10 +2,14 @@
 #include "accounts/Current_Account.h"
 #include "accounts/Loan_Account.h"
 #include "accounts/Saving_Account.h"
+
 #include "database/Database.h"
+
 #include "utils/Color_Codes.h"
 #include "utils/Common_Headers.h"
 #include "utils/User_Input.h"
+
+#include "User.h"
 
 int main() {
   Database<Loan_Account> *p_DB = new Database<Loan_Account>();

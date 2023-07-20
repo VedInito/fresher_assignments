@@ -9,7 +9,8 @@ public:
   Current_Account(long long Customer_ID, long double Initial_Opening_Amount)
       : m_Customer_ID(Customer_ID), m_Current_Balance(Initial_Opening_Amount) {
 
-    m_Account_Number = s_Account_Number_Generator.Get();
+    m_This_Account_Type = "CURRENT_ACCOUNT";
+    m_Account_Number = sp_Account_Number_Generator->Get();
 
     m_Number_Of_Transactions_This_Month = 0;
 
@@ -19,6 +20,7 @@ public:
   }
 
 public:
+  std::string Get_Account_Type() { return m_This_Account_Type; }
   long long Get_Account_Number() { return m_Account_Number; }
   long long Get_Current_Balance() { return m_Current_Balance; }
   long long Get_Customer_ID() { return m_Customer_ID; }
@@ -139,7 +141,7 @@ public:
     std::cout << CYAN << "***** Dumping Account Start *****" << RESET
               << std::endl;
 
-    std::cout << "Account Type: Current Account" << std::endl;
+    std::cout << "Account Type: " << m_This_Account_Type << std::endl;
     std::cout << "Account Number: " << m_Account_Number << std::endl;
     std::cout << "Customer Id: " << m_Customer_ID << std::endl;
     std::cout << "Current Balance: " << m_Current_Balance << std::endl;
@@ -173,11 +175,13 @@ private:
   static constexpr long double sc_Number_Of_Accounts_Upper_Bound = 500'000;
 
 private:
-  static Unique_Random_Number_Generator s_Account_Number_Generator;
+  static Unique_Random_Number_Generator *sp_Account_Number_Generator;
 
 private:
   int m_Customer_ID;
   int m_Current_Balance;
+
+  std::string m_This_Account_Type;
 
   int m_Number_Of_Transactions_This_Month;
 
@@ -186,8 +190,9 @@ private:
   long long m_Account_Number;
 };
 
-Unique_Random_Number_Generator Current_Account::s_Account_Number_Generator(
-    Current_Account::sc_Digits_In_Account_Number,
-    Current_Account::sc_Number_Of_Accounts_Upper_Bound);
+Unique_Random_Number_Generator *Current_Account::sp_Account_Number_Generator =
+    new Unique_Random_Number_Generator(
+        Current_Account::sc_Digits_In_Account_Number,
+        Current_Account::sc_Number_Of_Accounts_Upper_Bound);
 
 #endif
