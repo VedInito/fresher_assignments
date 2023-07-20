@@ -1,5 +1,2 @@
 #include "Run.cpp"
-
-int main() {
-  Run();
-}
+int main() { Run(); }

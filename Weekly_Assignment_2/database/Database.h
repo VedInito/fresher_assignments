@@ -44,12 +44,16 @@ public:
 
 public:
   void Dump() {
-    std::cout << "***** Database Dumping Start *****" << std::endl << std::endl;
+    std::cout << BOLD_CYAN << "***** Database Dumping Start *****" << RESET
+              << std::endl
+              << std::endl;
 
     for (auto p_Element : m_Elements)
       p_Element->Dump();
 
-    std::cout << "***** Dumping Database End *****" << std::endl << std::endl;
+    std::cout << BOLD_CYAN << "***** Dumping Database End *****" << RESET
+              << std::endl
+              << std::endl;
   }
 
 private:
